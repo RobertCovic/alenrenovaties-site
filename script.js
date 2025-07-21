@@ -1,18 +1,11 @@
 
-function toggleMenu() {
-  const nav = document.getElementById('main-nav');
-  if (nav) {
-    nav.classList.toggle('active');
-  }
-}
-
 const translations = {
   en: {
     heroTitle: "Your Trusted Construction & Renovation Experts",
     heroSubtitle: "We transform your space with precision, quality, and care.",
     quoteButton: "Get a Quote",
     aboutTitle: "About Us",
-    aboutText1: "Looking for a trusted partner to bring your renovation vision to life? We offer comprehensive renovation services tailored to both residential and commercial spaces. From full home makeovers to bathroom upgrades and office transformations, our skilled team is here to turn your ideas into reality.",
+    aboutText1: "Looking for a trusted partner to bring your renovation vision to life? We offer comprehensive renovation services tailored to both residential and commercial spaces.",
     aboutText2: "Alen Renovations has over 10 years of experience in the construction and renovation industry. Our mission is to bring your vision to life with honesty, craftsmanship, and professionalism.",
     servicesTitle: "Our Services",
     service1: "Full Home Renovations",
@@ -27,17 +20,17 @@ const translations = {
     submitButton: "Send Message"
   },
   fr: {
-    heroTitle: "Votre expert en construction et rénovation de confiance",
+    heroTitle: "Vos experts de confiance en construction et rénovation",
     heroSubtitle: "Nous transformons votre espace avec précision, qualité et soin.",
     quoteButton: "Demander un devis",
     aboutTitle: "À propos de nous",
-    aboutText1: "Vous cherchez un partenaire de confiance pour concrétiser votre projet de rénovation ? Nous proposons des services complets pour les espaces résidentiels et commerciaux.",
-    aboutText2: "Alen Renovations possède plus de 10 ans d'expérience dans le secteur de la rénovation. Notre mission est de concrétiser votre vision avec honnêteté et professionnalisme.",
+    aboutText1: "Vous cherchez un partenaire fiable pour réaliser votre projet de rénovation ? Nous offrons des services complets pour les espaces résidentiels et commerciaux. Des rénovations complètes aux modernisations de bureaux, notre équipe qualifiée concrétise vos idées.",
+    aboutText2: "Alen Renovations possède plus de 10 ans d'expérience dans la construction et la rénovation. Notre mission est de concrétiser votre vision avec honnêteté, savoir-faire et professionnalisme.",
     servicesTitle: "Nos Services",
-    service1: "Rénovations complètes",
-    service2: "Salles de bain & cuisines",
-    service3: "Peinture & plâtrage",
-    service4: "Sol et carrelage",
+    service1: "Rénovations complètes de maisons",
+    service2: "Rénovation de salle de bain et cuisine",
+    service3: "Peinture et plâtrerie",
+    service4: "Revêtement de sol et carrelage",
     contactTitle: "Nous contacter",
     labelName: "Nom :",
     labelEmail: "E-mail :",
@@ -68,6 +61,8 @@ const translations = {
 
 function switchLanguage(lang) {
   const t = translations[lang];
+  if (!t) return;
+
   document.getElementById('hero-title').innerText = t.heroTitle;
   document.getElementById('hero-subtitle').innerText = t.heroSubtitle;
   document.getElementById('quote-button').innerText = t.quoteButton;
@@ -86,3 +81,20 @@ function switchLanguage(lang) {
   document.getElementById('label-message').innerText = t.labelMessage;
   document.getElementById('submit-button').innerText = t.submitButton;
 }
+
+function toggleMenu() {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('active');
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const langButtons = document.querySelectorAll('.lang-button');
+  langButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const lang = button.getAttribute('data-lang');
+      switchLanguage(lang);
+    });
+  });
+
+  const menuButton = document.querySelector('.menu-button');
+  menuButton.addEventListener('click', toggleMenu);
+});
